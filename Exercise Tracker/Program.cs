@@ -3,6 +3,10 @@ using Exercise_Tracker.Model;
 using Exercise_Tracker.Repository;
 using Exercise_Tracker.Services;
 
+//yup, controller communicates with UI,
+//Repository communicates with DB, and any processing in between belongs to service
+
+
 PotionRepositoryLocal repositoryLocal = new PotionRepositoryLocal();
 
 PotionService potionService = new(repositoryLocal);
