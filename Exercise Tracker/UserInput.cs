@@ -9,11 +9,11 @@ namespace Exercise_Tracker
 {
     internal class UserInput
     {
-        private readonly PushupController pushupController;
+        private readonly ExcerciseController excerciseController;
 
-        public UserInput(PushupController pushupController)
+        public UserInput(ExcerciseController excerciseController )
         {
-            this.pushupController = pushupController;
+            this.excerciseController = excerciseController;
         }
     }
 }

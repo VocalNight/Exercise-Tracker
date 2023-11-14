@@ -9,7 +9,7 @@ namespace Exercise_Tracker.Interfaces
 {
     public interface IExcerciseRepository<T>
     {
-        PushUp SearchById( int id );
+        T SearchById( int id );
 
         IEnumerable<T> GetAll();
 

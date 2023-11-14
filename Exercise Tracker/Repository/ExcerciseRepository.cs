@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Exercise_Tracker.Repository
 {
-    public class ExcerciseRepository : IExcerciseRepository<PushUp>
+    public class ExcerciseRepository<T> : IExcerciseRepository<T>
     {
 
         private readonly ExerciseTrackerContext _context;
@@ -18,13 +18,13 @@ namespace Exercise_Tracker.Repository
             _context = context;
         }
 
-        public void AddRegistry( PushUp pushup )
+        public void AddRegistry( T exercise )
         {
-            _context.Add(pushup );
+            _context.Add(exercise);
             _context.SaveChanges();
         }
 
-        public IEnumerable<PushUp> GetAll()
+        public IEnumerable<T> GetAll()
         {
             throw new NotImplementedException();
         }
@@ -34,12 +34,12 @@ namespace Exercise_Tracker.Repository
             throw new NotImplementedException();
         }
 
-        public PushUp SearchById( int id )
+        public T SearchById( int id )
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateRegistry( PushUp pushup )
+        public void UpdateRegistry( T exercise )
         {
             throw new NotImplementedException();
         }
