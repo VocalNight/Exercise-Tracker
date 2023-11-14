@@ -1,18 +1,13 @@
 ﻿using Exercise_Tracker.Model;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exercise_Tracker
 {
     public class ExerciseTrackerContext : DbContext
     {
         // Declare the tables with DbSet
-        DbSet<Pushup> Pushups { get; set; }
+        DbSet<PushUp> Pushups { get; set; }
 
         protected override void OnConfiguring( DbContextOptionsBuilder optionsBuilder )
         {

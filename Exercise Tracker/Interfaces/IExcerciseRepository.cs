@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Exercise_Tracker.Interfaces
 {
-    public interface IPushupRepository
+    public interface IExcerciseRepository<T>
     {
-        Pushup SearchById( int id );
+        PushUp SearchById( int id );
 
-        IEnumerable<Pushup> GetAll();
+        IEnumerable<T> GetAll();
 
-        void AddRegistry( Pushup pushup );
+        void AddRegistry( T exercise );
         void RemoveRegistry( int id );
 
-        void UpdateRegistry( Pushup pushup );
+        void UpdateRegistry( T exercise );
     }
 }

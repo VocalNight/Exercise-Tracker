@@ -1,4 +1,5 @@
-﻿using Exercise_Tracker.Interfaces;
+﻿using Exercise_Tracker;
+using Exercise_Tracker.Interfaces;
 using Exercise_Tracker.Model;
 using Exercise_Tracker.Repository;
 using Exercise_Tracker.Services;
@@ -6,12 +7,14 @@ using Exercise_Tracker.Services;
 //yup, controller communicates with UI,
 //Repository communicates with DB, and any processing in between belongs to service
 
+ExerciseTrackerContext dbContenxt = new ExerciseTrackerContext();
+PushupRepository repository = new PushupRepository(dbContenxt);
+PushUpService service = new PushUpService(repository);
 
-PotionRepositoryLocal repositoryLocal = new PotionRepositoryLocal();
 
 PotionService potionService = new(repositoryLocal);
 
-
+/*
 potionService.CreatePotion(1, "Healing potion", 10, 15, "Makes you feel alive again");
 potionService.CreatePotion(2, "Mana potion", 10, 6, "Makes you feel refreshed");
 potionService.CreatePotion(3, "Stone Skin potion", 5, 40, "My strongest potion");
@@ -34,4 +37,5 @@ foreach (Potion potion in potionsUpdated)
 {
     Console.WriteLine($"{potion.Id} - {potion.Name} - Costs {potion.Price} and has currently {potion.StockQuantity} in stock.");
 }
+*/
 
