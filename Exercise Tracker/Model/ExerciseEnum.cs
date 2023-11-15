@@ -8,8 +8,8 @@ namespace Exercise_Tracker.Model
 {
     public enum ExerciseEnum
     {
-        Cardio,
-        PushUp
+        Cardio = 1,
+        PushUp = 2
 
     }
 }

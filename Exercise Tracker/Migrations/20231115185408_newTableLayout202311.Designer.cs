@@ -4,6 +4,7 @@ using Exercise_Tracker;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exercise_Tracker.Migrations
 {
     [DbContext(typeof(ExerciseTrackerContext))]
-    partial class ExerciseTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20231115185408_newTableLayout202311")]
+    partial class newTableLayout202311
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

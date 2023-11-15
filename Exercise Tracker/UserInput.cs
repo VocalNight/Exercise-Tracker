@@ -17,6 +17,15 @@ namespace Exercise_Tracker
             this.excerciseController = excerciseController;
         }
 
+        public void Menu()
+        {
+            Console.WriteLine("Welcome, what would you like to do? Select with the numpad.");
+            Console.WriteLine("1 - Add exercise");
+            Console.WriteLine("2 - Remove exercise");
+            Console.WriteLine("3 - See exercise list");
+            Console.WriteLine("4 - Leave application");
+        }
+
 
         public void Run()
         {
@@ -32,12 +41,10 @@ namespace Exercise_Tracker
                 if (key == ConsoleKey.NumPad1)
                 {
                     ExerciseInfo(ExerciseEnum.PushUp); 
-                    break;
 
                 } else if (key == ConsoleKey.NumPad2)
                 {
                     ExerciseInfo(ExerciseEnum.Cardio);
-                    break;
 
                 } else if ( key == ConsoleKey.NumPad3)
                 {
@@ -68,10 +75,14 @@ namespace Exercise_Tracker
 
             endTime = excerciseController.checkTimeChronology(startTime, endTime);
 
-            DateTime startingTimeDate = DateTime.ParseExact($"{DateTime.Today} {startTime}", "dd-MM-yyyy HH:mm",
+            //Get only the date without time.
+            DateTime dateTimeNow = DateTime.Now;
+            string dateOnlyString = dateTimeNow.ToString("dd/MM/yyyy");
+
+            DateTime startingTimeDate = DateTime.ParseExact($"{dateOnlyString} {startTime}", "dd/MM/yyyy HH:mm",
                                           System.Globalization.CultureInfo.InvariantCulture);
 
-            DateTime endTimeDate = DateTime.ParseExact($"{DateTime.Today} {endTime}", "dd-MM-yyyy HH:mm",
+            DateTime endTimeDate = DateTime.ParseExact($"{dateOnlyString} {endTime}", "dd/MM/yyyy HH:mm",
                                           System.Globalization.CultureInfo.InvariantCulture);
 
             exercise.ExerciseType = exerciseType;
@@ -79,13 +90,17 @@ namespace Exercise_Tracker
             exercise.DateStart = endTimeDate;
             exercise.Duration = endTimeDate - startingTimeDate;
 
-            Console.WriteLine("Woul you like to add any extra comments? Type anything");
+            Console.WriteLine("Would you like to add any extra comments? Type anything");
 
             string? comment = Console.ReadLine();
 
             exercise.Comments = comment;
 
             excerciseController.AddExercise(exercise);
+            Console.Clear();
+
+            Console.WriteLine("Added sucessfully");
+            Console.WriteLine("----------");
 
         }
     }

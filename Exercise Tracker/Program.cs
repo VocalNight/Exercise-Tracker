@@ -22,6 +22,6 @@ var controller = new ExcerciseController(service);
 //Insert the controller into the view
 var view = new UserInput(controller);
 
-
+view.Run();
 
 
