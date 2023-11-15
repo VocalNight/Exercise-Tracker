@@ -10,11 +10,19 @@ namespace Exercise_Tracker.Services
 {
     internal class ExcerciseService
     {
-        private readonly IExcerciseRepository<PushUp> pushupRepository;
+        private readonly IExcerciseRepository<Exercise> exerciseRepository;
 
-        public ExcerciseService(IExcerciseRepository<PushUp> pushupRepository)
+        public ExcerciseService(IExcerciseRepository<Exercise> exerciseRepository )
         {
-            this.pushupRepository = pushupRepository;
+            this.exerciseRepository = exerciseRepository;
+        }
+
+        public void AddExercise(Exercise exercise)
+        {
+            if (exercise != null)
+            {
+                exerciseRepository.AddRegistry(exercise);
+            }
         }
 
     }

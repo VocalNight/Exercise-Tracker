@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Exercise_Tracker.Model
 {
-    public class PushUp
+    public class Exercise
     {
         public int Id { get; set; }
+        public ExerciseEnum ExerciseType {  get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
         public TimeSpan Duration { get; set; }

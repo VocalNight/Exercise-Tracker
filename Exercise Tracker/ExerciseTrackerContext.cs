@@ -7,8 +7,7 @@ namespace Exercise_Tracker
     public class ExerciseTrackerContext : DbContext
     {
         // Declare the tables with DbSet
-        DbSet<PushUp> Pushups { get; set; }
-        DbSet<Cardio> Cardios { get; set; }
+        DbSet<Exercise> exercises { get; set; }
 
         protected override void OnConfiguring( DbContextOptionsBuilder optionsBuilder )
         {
