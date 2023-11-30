@@ -1,16 +1,12 @@
 ﻿using Exercise_Tracker;
 using Exercise_Tracker.Controller;
-using Exercise_Tracker.Interfaces;
 using Exercise_Tracker.Model;
 using Exercise_Tracker.Repository;
 using Exercise_Tracker.Services;
 
-//yup, controller communicates with UI,
-//Repository communicates with DB, and any processing in between belongs to service
 
 //Instance of the context db
 var dbContenxt = new ExerciseTrackerContext();
-
 
 // Repository connects with the generic context of whichever db you are using
 var repository = new ExcerciseRepository<Exercise>(dbContenxt);
