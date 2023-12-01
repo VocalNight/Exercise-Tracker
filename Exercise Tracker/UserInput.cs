@@ -1,11 +1,6 @@
 ﻿using ConsoleTableExt;
 using Exercise_Tracker.Controller;
 using Exercise_Tracker.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exercise_Tracker
 {
@@ -39,6 +34,7 @@ namespace Exercise_Tracker
                 switch (key)
                 {
                     case ConsoleKey.NumPad1:
+                        Console.Clear();
                         ExerciseSelection();
                         break;
                     case ConsoleKey.NumPad2:
@@ -46,9 +42,11 @@ namespace Exercise_Tracker
                         RemoveExercise();
                         break;
                     case ConsoleKey.NumPad3:
+                        Console.Clear();
                         ShowExercises();
                         break;
                     case ConsoleKey.NumPad4:
+                        Console.Clear();
                         Console.WriteLine("Bye!");
                         return;
                     default:
@@ -90,6 +88,7 @@ namespace Exercise_Tracker
 
             // Print the table to the console
              tableBuilder.ExportAndWriteLine();
+            Console.WriteLine("\n");
         }
 
         private void ExerciseSelection()
@@ -100,6 +99,7 @@ namespace Exercise_Tracker
             Console.WriteLine("3 - Exit");
 
             var key = Console.ReadKey(false).Key;
+            Console.Clear();
 
             if (key == ConsoleKey.NumPad1)
             {
@@ -128,12 +128,12 @@ namespace Exercise_Tracker
             var exercise = new Exercise();
 
 
-            Console.WriteLine("Insert the start time");
+            Console.WriteLine("Insert the start time (Format HH:mm)");
             Console.WriteLine("\nMake sure the ending time is higher than the starting time!");
 
             string startTime = excerciseController.checkTimeValidity(Console.ReadLine());
 
-            Console.WriteLine("Insert the end time");
+            Console.WriteLine("Insert the end time (Format HH:mm)");
             Console.WriteLine("\nMake sure the ending time is higher than the starting time!");
 
             string endTime = excerciseController.checkTimeValidity(Console.ReadLine());
@@ -153,6 +153,7 @@ namespace Exercise_Tracker
             exercise.ExerciseType = exerciseType;
             exercise.DateEnd = startingTimeDate;
             exercise.DateStart = endTimeDate;
+            exercise.Duration = endTimeDate - startingTimeDate;
 
             Console.WriteLine("Would you like to add any extra comments? Type anything");
 
