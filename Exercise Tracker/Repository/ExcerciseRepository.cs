@@ -1,16 +1,10 @@
 ﻿using Exercise_Tracker.Interfaces;
 using Exercise_Tracker.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exercise_Tracker.Repository
 {
-    public class ExcerciseRepository<T> : IExcerciseRepository<T>
+    public class ExcerciseRepository : IExcerciseRepository
     {
-
         private readonly ExerciseTrackerContext _context;
 
         public ExcerciseRepository(ExerciseTrackerContext context)
@@ -18,30 +12,36 @@ namespace Exercise_Tracker.Repository
             _context = context;
         }
 
-        public void AddRegistry( T exercise )
+        public void AddRegistry( Exercise exercise )
         {
             _context.Add(exercise);
             _context.SaveChanges();
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<Exercise> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Set<Exercise>().ToList();
         }
 
         public void RemoveRegistry( int id )
         {
-            throw new NotImplementedException();
+            var dbAcess = _context.Set<Exercise>().Find(id);
+            if (dbAcess != null)
+            {
+                _context.Remove(dbAcess);
+                _context.SaveChanges();
+            }
         }
 
-        public T SearchById( int id )
+        public Exercise SearchById( int id )
         {
-            throw new NotImplementedException();
+            return _context.Find<Exercise>(id);
         }
 
-        public void UpdateRegistry( T exercise )
+        public void UpdateRegistry( Exercise exercise )
         {
-            throw new NotImplementedException();
+            _context.Update(exercise);
+            _context.SaveChanges();
         }
     }
 }

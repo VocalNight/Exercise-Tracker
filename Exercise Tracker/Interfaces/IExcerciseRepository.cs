@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Exercise_Tracker.Interfaces
 {
-    public interface IExcerciseRepository<T>
+    public interface IExcerciseRepository
     {
-        T SearchById( int id );
+        Exercise SearchById( int id );
 
-        IEnumerable<T> GetAll();
+        IEnumerable<Exercise> GetAll();
 
-        void AddRegistry( T exercise );
+        void AddRegistry( Exercise exercise );
         void RemoveRegistry( int id );
 
-        void UpdateRegistry( T exercise );
+        void UpdateRegistry( Exercise exercise );
     }
 }

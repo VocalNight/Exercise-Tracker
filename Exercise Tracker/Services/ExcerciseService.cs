@@ -10,9 +10,9 @@ namespace Exercise_Tracker.Services
 {
     internal class ExcerciseService
     {
-        private readonly IExcerciseRepository<Exercise> exerciseRepository;
+        private readonly IExcerciseRepository exerciseRepository;
 
-        public ExcerciseService(IExcerciseRepository<Exercise> exerciseRepository )
+        public ExcerciseService(IExcerciseRepository exerciseRepository )
         {
             this.exerciseRepository = exerciseRepository;
         }
@@ -25,5 +25,29 @@ namespace Exercise_Tracker.Services
             }
         }
 
+        public IEnumerable<Exercise> GetExercises()
+        {
+            return exerciseRepository.GetAll();
+        }
+
+        public void RemoveRegistry(int id)
+        {
+            List<Exercise> exercises = (List<Exercise>)GetExercises();
+            
+            if (exercises.Where(e => e.Id == id).Count() == 0)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Id not valid. Try again\n");
+                Console.ForegroundColor = ConsoleColor.White;
+                return;
+            }
+
+            exerciseRepository.RemoveRegistry(id);
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nRegistry removed!\n");
+            Console.ForegroundColor = ConsoleColor.White;
+        } 
     }
 }

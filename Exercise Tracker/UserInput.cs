@@ -1,4 +1,5 @@
-﻿using Exercise_Tracker.Controller;
+﻿using ConsoleTableExt;
+using Exercise_Tracker.Controller;
 using Exercise_Tracker.Model;
 using System;
 using System.Collections.Generic;
@@ -31,34 +32,98 @@ namespace Exercise_Tracker
         {
             while (true) {
 
-                Console.WriteLine("Welcome What exercise would you like to track? Select with the numpad.");
-                Console.WriteLine("1 - Push-Ups");
-                Console.WriteLine("2 - Cardio");
-                Console.WriteLine("3 - Exit");
+                Menu();
 
                 var key = Console.ReadKey(false).Key;
 
-                if (key == ConsoleKey.NumPad1)
+                switch (key)
                 {
-                    ExerciseInfo(ExerciseEnum.PushUp); 
+                    case ConsoleKey.NumPad1:
+                        ExerciseSelection();
+                        break;
+                    case ConsoleKey.NumPad2:
+                        Console.Clear();
+                        RemoveExercise();
+                        break;
+                    case ConsoleKey.NumPad3:
+                        ShowExercises();
+                        break;
+                    case ConsoleKey.NumPad4:
+                        Console.WriteLine("Bye!");
+                        return;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid input.");
+                        break;
 
-                } else if (key == ConsoleKey.NumPad2)
-                {
-                    ExerciseInfo(ExerciseEnum.Cardio);
-
-                } else if ( key == ConsoleKey.NumPad3)
-                {
-                    Console.WriteLine("Bye!");
-                    return;
-
-                } else {
-                    Console.Clear();
-                    Console.WriteLine("Invalid input."); 
                 }
             }
         }
 
-        private void ExerciseInfo(ExerciseEnum exerciseType)
+        private void RemoveExercise()
+        {
+            int id;
+
+            while (true)
+            {
+                ShowExercises();
+                Console.WriteLine("\nType the Id of the Exercise you wish to remove.");
+
+                if (Int32.TryParse(Console.ReadLine(), out id)) {
+                    excerciseController.RemoveExercise(id);
+                    break;
+
+                } 
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("\nNot a valid number, try again");
+                }
+                
+            }
+        }
+
+        private void ShowExercises()
+        {
+            var tableBuilder = ConsoleTableBuilder.From((List<Exercise>)excerciseController.GetExercises())
+            .WithFormat(ConsoleTableBuilderFormat.Minimal);
+
+            // Print the table to the console
+             tableBuilder.ExportAndWriteLine();
+        }
+
+        private void ExerciseSelection()
+        {
+            Console.WriteLine("What exercise would you like to track? Select with the numpad.");
+            Console.WriteLine("1 - Push-Ups");
+            Console.WriteLine("2 - Cardio");
+            Console.WriteLine("3 - Exit");
+
+            var key = Console.ReadKey(false).Key;
+
+            if (key == ConsoleKey.NumPad1)
+            {
+                AddNewExercise(ExerciseEnum.PushUp);
+
+            }
+            else if (key == ConsoleKey.NumPad2)
+            {
+                AddNewExercise(ExerciseEnum.Cardio);
+
+            }
+            else if (key == ConsoleKey.NumPad3)
+            {
+                Console.WriteLine("Bye!");
+                return;
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Invalid input.");
+            }
+        }
+
+        private void AddNewExercise(ExerciseEnum exerciseType)
         {
             var exercise = new Exercise();
 
@@ -88,7 +153,6 @@ namespace Exercise_Tracker
             exercise.ExerciseType = exerciseType;
             exercise.DateEnd = startingTimeDate;
             exercise.DateStart = endTimeDate;
-            exercise.Duration = endTimeDate - startingTimeDate;
 
             Console.WriteLine("Would you like to add any extra comments? Type anything");
 

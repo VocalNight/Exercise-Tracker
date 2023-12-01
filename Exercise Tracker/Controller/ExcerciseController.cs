@@ -1,11 +1,6 @@
 ﻿using Exercise_Tracker.Model;
 using Exercise_Tracker.Services;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exercise_Tracker.Controller
 {
@@ -21,6 +16,16 @@ namespace Exercise_Tracker.Controller
         public void AddExercise(Exercise exercise)
         {
             _service.AddExercise(exercise);
+        }
+
+        public IEnumerable<Exercise> GetExercises()
+        {
+            return _service.GetExercises();
+        }
+
+        public void RemoveExercise(int id)
+        {
+            _service.RemoveRegistry(id);
         }
 
         public string checkTimeValidity( string time )

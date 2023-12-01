@@ -9,7 +9,7 @@ using Exercise_Tracker.Services;
 var dbContenxt = new ExerciseTrackerContext();
 
 // Repository connects with the generic context of whichever db you are using
-var repository = new ExcerciseRepository<Exercise>(dbContenxt);
+var repository = new ExcerciseRepository(dbContenxt);
 
 //Service connects to the repository and receives data from controller.
 var service = new ExcerciseService(repository);
